@@ -1,0 +1,11 @@
+{
+  "body": "{\"email\":\"jinsy.oommen@cascadeenergy.com\"}",
+  "pathParameters": {
+    "checkinDate": "2018-03-10"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

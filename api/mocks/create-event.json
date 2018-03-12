@@ -1,0 +1,8 @@
+{
+  "body": "{\"checkinDate\":\"2018-03-03\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

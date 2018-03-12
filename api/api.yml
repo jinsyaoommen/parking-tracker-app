@@ -1,0 +1,18 @@
+service: parking-tracker-app-api
+stage: prod
+region: us-west-2
+stack: parking-tracker-app-api-prod
+api keys:
+  None
+endpoints:
+  POST - https://iif4k5rxph.execute-api.us-west-2.amazonaws.com/prod/checkin
+  GET - https://iif4k5rxph.execute-api.us-west-2.amazonaws.com/prod/checkin/{checkinDate}
+  GET - https://iif4k5rxph.execute-api.us-west-2.amazonaws.com/prod/checkin
+  PUT - https://iif4k5rxph.execute-api.us-west-2.amazonaws.com/prod/checkin/{checkinDate}
+  DELETE - https://iif4k5rxph.execute-api.us-west-2.amazonaws.com/prod/checkin/{checkinDate}
+functions:
+  create: parking-tracker-app-api-prod-create
+  get: parking-tracker-app-api-prod-get
+  list: parking-tracker-app-api-prod-list
+  update: parking-tracker-app-api-prod-update
+  delete: parking-tracker-app-api-prod-delete

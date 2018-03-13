@@ -28,14 +28,14 @@ class App extends Component {
     };
   }
 
-  userHasAuthenticated = authenticated => {
-    this.setState({ isAuthenticated: authenticated });
+  userHasAuthenticated = (authenticated, email) => {
+    this.setState({ isAuthenticated: authenticated, email });
   };
 
   handleLogout = async () => {
     await Auth.signOut();
 
-    this.userHasAuthenticated(false);
+    this.userHasAuthenticated(false, null);
 
     this.props.history.push("/login");
   };

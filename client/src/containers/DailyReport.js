@@ -15,7 +15,8 @@ export default class Home extends Component {
     totalSlots: 0,
     today: format(new Date(), 'YYYY-MM-DD'),
     slotsRemaining: 0,
-    checkedInList: []
+    totalCheckinForToday: [],
+    isLoading: 'loading'
   };
 
   async componentDidMount() {
@@ -32,7 +33,8 @@ export default class Home extends Component {
     this.setState({
       totalSlots,
       slotsRemaining: totalSlots - checkedInList.length,
-      checkedInList
+      totalCheckinForToday,
+      isLoading: 'complete'
     });
   }
   render() {
@@ -47,8 +49,8 @@ export default class Home extends Component {
               <Col width={12}><HR /></Col>
             </Row>
             {
-              R.isEmpty(this.state.checkedInList)
-              ? !this.props.isAuthenticated ? 'You need to be logged in to view the report' : 'loading...'
+              this.state.isLoading === 'isLoading'
+              ? 'Loading...'
               : (
                 <AutoSizer>
                   {({ width }) => (
@@ -57,8 +59,8 @@ export default class Home extends Component {
                       height={300}
                       headerHeight={20}
                       rowHeight={30}
-                      rowCount={this.state.checkedInList.length}
-                      rowGetter={({ index }) => this.state.checkedInList[index]}
+                      rowCount={this.state.totalCheckinForToday.length}
+                      rowGetter={({ index }) => this.state.totalCheckinForToday[index]}
                     >
                       <Column
                         label='Email'

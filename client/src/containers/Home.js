@@ -16,7 +16,8 @@ export default class Home extends Component {
     today: format(new Date(), 'YYYY-MM-DD'),
     checkinTime: null,
     checkoutTime: null,
-    slotsRemaining: 0
+    slotsRemaining: 0,
+    isLoading: 'loading'
   };
 
   async componentDidMount() {
@@ -42,7 +43,8 @@ export default class Home extends Component {
       checkoutTime: R.isNil(R.prop('checkoutTime', userCheckinDetails))
         ? null
         : format(R.prop('checkoutTime', userCheckinDetails), 'hh:mm:ss a'),
-      slotsRemaining: totalSlots - checkedInList.length
+      slotsRemaining: totalSlots - checkedInList.length,
+      isLoading: 'complete'
     });
   }
 
@@ -111,57 +113,65 @@ export default class Home extends Component {
             <Row>
               <Col width={12}><HR /></Col>
             </Row>
-            <CardContainer>
-              <CardBody>
-                <Row>
-                  <Col width={12}><strong>{format(new Date(), 'MMMM DD YYYY')}</strong></Col>
-                </Row>
-                <Row>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td width="50%">Slots Available</td>
-                        <td width="50%">{this.state.totalSlots}</td>
-                      </tr>
-                      <tr>
-                        <td width="50%">Slots Remaining</td>
-                        <td width="50%">{this.state.slotsRemaining}</td>
-                      </tr>
-                      <tr>
-                        <td width="50%">Checkin Time</td>
-                        <td width="50%">{this.state.checkinTime}</td>
-                      </tr>
-                      <tr>
-                        <td width="50%">Checkout Time</td>
-                        <td width="50%">{this.state.checkoutTime}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </Row>
-              </CardBody>
-              <CardFooter>
-                <Row>
-                {
-                  this.state.slotsRemaining > 0
-                  ? (
-                    [
-                      <Col width={2} key={1}><Button variant="secondary" onClick={() => this.checkin()}>Checkin</Button></Col>,
-                      <Col width={10} key={2}><Button variant="default" onClick={() => this.checkout()}>Checkout</Button></Col>
-                    ]
+            {
+              this.state.isLoading === 'complete'
+                ? (
+                <CardContainer>
+                  <CardBody>
+                    <Row>
+                      <Col width={12}><strong>{format(new Date(), 'MMMM DD YYYY')}</strong></Col>
+                    </Row>
+                    <Row>
+                      <table>
+                        <tbody>
+                        <tr>
+                          <td width="50%">Slots Available</td>
+                          <td width="50%">{this.state.totalSlots}</td>
+                        </tr>
+                        <tr>
+                          <td width="50%">Slots Remaining</td>
+                          <td width="50%">{this.state.slotsRemaining}</td>
+                        </tr>
+                        <tr>
+                          <td width="50%">Checkin Time</td>
+                          <td width="50%">{this.state.checkinTime}</td>
+                        </tr>
+                        <tr>
+                          <td width="50%">Checkout Time</td>
+                          <td width="50%">{this.state.checkoutTime}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </Row>
+                  </CardBody>
+                  <CardFooter>
+                    <Row>
+                      {
+                        this.state.slotsRemaining > 0
+                          ? (
+                          [
+                            <Col width={2} key={1}><Button variant="secondary"
+                                                           onClick={() => this.checkin()}>Checkin</Button></Col>,
+                            <Col width={10} key={2}><Button variant="default"
+                                                            onClick={() => this.checkout()}>Checkout</Button></Col>
+                          ]
 
-                  )
-                  : (
-                    [
-                      <Col width={10} key={12}>Sorry, all parking slots are taken!</Col>
-                    ]
-                  )
-                }
-                </Row>
-                <Row>
+                        )
+                          : (
+                          [
+                            <Col width={10} key={12}>Sorry, all parking slots are taken!</Col>
+                          ]
+                        )
+                      }
+                    </Row>
+                    <Row>
 
-                </Row>
-              </CardFooter>
-            </CardContainer>
+                    </Row>
+                  </CardFooter>
+                </CardContainer>
+              )
+              : 'Loading...'
+            }
           </Section>
         </PageContainer>
       </PageBodyContainer>

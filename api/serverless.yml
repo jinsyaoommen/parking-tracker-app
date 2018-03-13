@@ -30,7 +30,7 @@ provider:
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /notes
+  # - path: url path is /checkin
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
@@ -46,7 +46,7 @@ functions:
 
   get:
     # Defines an HTTP API endpoint that calls the main function in get.js
-    # - path: url path is /notes/{id}
+    # - path: url path is /checkin/{checkinDate}
     # - method: GET request
     handler: get.main
     events:
@@ -58,7 +58,7 @@ functions:
 
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
-    # - path: url path is /notes
+    # - path: url path is /checkin
     # - method: GET request
     handler: list.main
     events:
@@ -70,7 +70,7 @@ functions:
 
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
-    # - path: url path is /notes/{id}
+    # - path: url path is /checkin/{checkinDate}
     # - method: PUT request
     handler: update.main
     events:
@@ -82,7 +82,7 @@ functions:
 
   delete:
     # Defines an HTTP API endpoint that calls the main function in delete.js
-    # - path: url path is /notes/{id}
+    # - path: url path is /checkin/{checkinDate}
     # - method: DELETE request
     handler: delete.main
     events:
@@ -94,7 +94,7 @@ functions:
 
   getTotalSlots:
       # Defines an HTTP API endpoint that calls the main function in list.js
-      # - path: url path is /notes
+      # - path: url path is /checkin
       # - method: GET request
       handler: getSlotTotal.main
       events:
@@ -106,7 +106,7 @@ functions:
 
   getListForDate:
     # Defines an HTTP API endpoint that calls the main function in list.js
-    # - path: url path is /notes
+    # - path: url path is /checkin
     # - method: GET request
     handler: getListForDate.main
     events:
@@ -118,7 +118,7 @@ functions:
 
   getUserDataForDate:
       # Defines an HTTP API endpoint that calls the main function in list.js
-      # - path: url path is /notes
+      # - path: url path is /checkin
       # - method: GET request
       handler: getUserDataForDate.main
       events:

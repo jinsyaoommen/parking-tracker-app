@@ -17,7 +17,7 @@ export default class Home extends Component {
     checkinTime: null,
     checkoutTime: null,
     slotsRemaining: 0,
-    isLoading: 'loading'
+    appState: 'loading'
   };
 
   async componentDidMount() {
@@ -44,7 +44,7 @@ export default class Home extends Component {
         ? null
         : format(R.prop('checkoutTime', userCheckinDetails), 'hh:mm:ss a'),
       slotsRemaining: totalSlots - checkedInList.length,
-      isLoading: 'complete'
+      appState: 'success'
     });
   }
 
@@ -95,7 +95,6 @@ export default class Home extends Component {
 
     const checkedInList = R.filter(x => R.isNil(x.checkoutTime), totalCheckinForToday);
 
-    console.log('on checkout', R.reject(x => !R.isNil(x.checkoutTime), totalCheckinForToday));
     this.setState({
       checkoutTime: format(checkoutTime, 'hh:mm:ss a'),
       slotsRemaining: this.state.totalSlots - checkedInList.length
@@ -114,7 +113,7 @@ export default class Home extends Component {
               <Col width={12}><HR /></Col>
             </Row>
             {
-              this.state.isLoading === 'complete'
+              this.state.appState === 'success'
                 ? (
                 <CardContainer>
                   <CardBody>

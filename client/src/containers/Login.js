@@ -32,7 +32,7 @@ export default class Login extends Component {
     try {
       await Auth.signIn(this.state.email, this.state.password);
       this.props.userHasAuthenticated(true, this.state.email);
-      this.props.history.push('/');
+      // this.props.history.push('/');
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });

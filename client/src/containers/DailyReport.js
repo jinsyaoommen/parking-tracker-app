@@ -16,7 +16,7 @@ export default class Home extends Component {
     today: format(new Date(), 'YYYY-MM-DD'),
     slotsRemaining: 0,
     totalCheckinForToday: [],
-    isLoading: 'loading'
+    appState: 'loading'
   };
 
   async componentDidMount() {
@@ -34,7 +34,7 @@ export default class Home extends Component {
       totalSlots,
       slotsRemaining: totalSlots - checkedInList.length,
       totalCheckinForToday,
-      isLoading: 'complete'
+      appState: 'success'
     });
   }
   render() {
@@ -49,7 +49,7 @@ export default class Home extends Component {
               <Col width={12}><HR /></Col>
             </Row>
             {
-              this.state.isLoading === 'isLoading'
+              this.state.appState === 'loading'
               ? 'Loading...'
               : (
                 <AutoSizer>

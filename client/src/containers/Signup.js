@@ -65,7 +65,7 @@ export default class Login extends Component {
       await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
       await Auth.signIn(this.state.email, this.state.password);
 
-      this.props.userHasAuthenticated(true);
+      this.props.userHasAuthenticated(true, this.state.email);
       this.props.history.push("/");
     } catch (e) {
       console.log(e);

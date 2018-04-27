@@ -43,6 +43,7 @@ class App extends Component {
   async componentDidMount() {
     try {
       const currentSession = await Auth.currentUserInfo();
+      console.log(await Auth.currentSession())
       if (currentSession) {
         this.userHasAuthenticated(true);
         this.setState({ email: currentSession.attributes.email })
